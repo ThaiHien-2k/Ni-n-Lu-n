@@ -57,7 +57,7 @@
                                 <div class="col-12 d-flex">
                                     <div class="id" style="width:150px">Mã đơn: {{ $order->id }}</div>
                                     <div class="name">Tên Khách Hàng: {{ $order->name }}</div>
-                                    <div class="status text-success ml-auto">Trạng thái: Chờ xác nhận</div> 
+                                    <div class="status text-success ml-auto">Trạng thái: {{ $order->status }}</div> 
                                 </div>
                             </div>
                         </a>

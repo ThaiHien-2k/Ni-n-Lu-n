@@ -1,6 +1,7 @@
 @foreach($comments as $comment)
     <div class="display-comment" @if($comment->parent_id != null) style="margin-left:40px;" @endif>
-        <strong>{{ $comment->user->name }}</strong>
+        <strong>{{ $comment->user->name }}</strong><br>
+        <p>{{ $comment->created_at->format('d/m/Y') }}</p>
         <p>{{ $comment->body }}</p>
         <hr>
         <a href="" id="reply"></a>

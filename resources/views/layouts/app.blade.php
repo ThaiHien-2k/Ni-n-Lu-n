@@ -68,10 +68,20 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
+                              
+
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                @if(Auth::user()->role == 'Admin')
+                                    <a href="{{ route('admin.index') }}" class="dropdown-item">Xem trang admin</a>
+                                    @endif
+
+
                                     <a href="{{ route('profile.edit',['user'=>Auth::user()->id ]) }}" class="dropdown-item">Chỉnh sửa thông tin</a>
                                     
-                                    @if(Auth::user()->role == 'Customer')
+                                  
+
+                                    @if(Auth::user())
                                     <a href="{{ route('order.show',['user'=>Auth::user()->id]) }}" class="dropdown-item">Lịch sử mua hàng</a>
                                     @endif
                                     
@@ -108,8 +118,8 @@
         <a class="nav-link" href="{{ route('product.index') }}">Liên hệ</a>
       </li>
     
-    <form class="form-inline my-2 my-lg-0" style="margin-left:250px ;">
-    <input class="form-control mr-sm-2 filter2" id="search2" style="width:400px;" type="search2" placeholder="Nhập từ khóa cần tìm" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" style="margin-left:250px ;" action="{{ route('search') }}" method="GET">
+    <input class="form-control mr-sm-2 filter2" id="searchProduct" style="width:400px;" name="searchProduct" placeholder="Nhập từ khóa cần tìm" aria-label="searchProduct" >
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm</button>
   </form>
     
@@ -148,7 +158,7 @@
                         <h3>Đăng ký nhận tin</h3>
                         <p>Đăng ký để nhận tin mới nhất từ chúng tôi</p>
                         <div class='newsletter-form p-0'>
-                            <form action='{{ route('newsletter.add') }}' method='post' id='newsletter-validate-detail'>
+                            <form action='' method='post' id='newsletter-validate-detail'>
                                 @csrf
                                 <input type='email' name='email' id='newsletter-footer' class=''
                                     placeholder='Nhập email của bạn'>
@@ -188,7 +198,6 @@
         {
             var search=JSON.stringify(query);
             var price =JSON.stringify($('#pricerange').val());
-            var gender =JSON.stringify(get_filter('gender')); 
             var brand =JSON.stringify(get_filter('brand'));
             $.ajax({
                 url:"{{ route('product.filter') }}",
@@ -232,8 +241,8 @@
         });
 
         $(document).on('change','#size-dropdown',function(){
-            var size = $(this).val();
-            document.cookie="shoes_size="+size+";"+"path=/";
+            var model = $(this).val();
+            document.cookie="laptops_model="+model+";"+"path=/";
             $('#add-to-cart').removeClass('disabled');
         });
 

@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="item-detail mr-auto d-flex flex-column justify-content-center">
                                     <div class="info-2"><h5>{{ $product['item']['name'] }}</h5> </div> 
-                                    <div class="info-3"><h6>Mẫu: {{ $product['size'] }}</h6></div>
+                                    <div class="info-3"><h6>Mẫu: {{ $product['model'] }}</h6></div>
                                    
                                     <div class="info-5">
                                         <a href="{{ route('cart.remove',['id'=>key($products)]) }}" class="remove-cart">

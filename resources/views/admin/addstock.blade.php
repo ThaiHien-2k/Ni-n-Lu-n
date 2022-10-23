@@ -24,11 +24,11 @@
             </div>
 
             <div class="col-12">
-                <label for="size" class="">{{ __('Mẫu') }}</label>
+                <label for="model" class="">{{ __('Mẫu') }}</label>
                 <div class="form-group">
                     <div>
-                        <input id="size" type="text" class="form-control @error('size') is-invalid @enderror" name="size" value="{{ old('size') }}" required autocomplete="size" autofocus>
-                        @error('size')
+                        <input id="model" type="text" class="form-control @error('model') is-invalid @enderror" name="model" value="{{ old('model') }}" required autocomplete="model" autofocus>
+                        @error('model')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

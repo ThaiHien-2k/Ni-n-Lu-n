@@ -21,6 +21,7 @@ Route::get('/dashboard', 'AdminController@index')->name('admin.index')->middlewa
 Route::patch('/dashboard', 'AdminController@updatereminder')->name('admin.reminder')->middleware(['auth','admin']);
 
 Route::get('/order', 'AdminController@order')->name('admin.order')->middleware(['auth','admin']);
+Route::get('/comment', 'AdminController@comment')->name('admin.comment')->middleware(['auth','admin']);
 Route::get('/order/{id}', 'AdminController@show_order')->name('admin.showorder')->middleware(['auth','admin']);
 
 Route::get('/user', 'AdminController@user')->name('admin.user')->middleware(['auth','admin']);
@@ -47,7 +48,11 @@ Route::get('/product/filter','ProductController@filter')->name('product.filter')
 
 Route::get('/product/brand','ProductController@brand')->name('product.brand');
 
-Route::get('/product/comment','CommentController@store')->name('comments.store');
+Route::get('/admin-comment','CommentController@store')->name('comments.store');
+Route::get('/admin-comment/remove/{id}', 'CommentController@remove')->name('comment.remove')->middleware(['auth','admin']);
+Route::get('/admin-comment/reply/{id}', 'CommentController@reply')->name('comment.reply')->middleware(['auth','admin']);
+Route::get('/admin-comment/replied/{id}', 'CommentController@replied')->name('comment.replied')->middleware(['auth','admin']);
+
 
 Route::get('/product/{product}','ProductController@show')->name('product.show');
 
@@ -62,5 +67,9 @@ Route::get('/user/order','OrderController@show')->name('order.show')->middleware
 
 Route::get('/profile/{user}/edit','ProfileController@edit')->name('profile.edit')->middleware('auth');
 Route::patch('/profile/{user}','ProfileController@update')->name('profile.update')->middleware('auth');
+
+
+Route::get('/search', 'SearchController@SearchProduct')->name('search');
+Route::get('/search/brand', 'SearchController@SearchProductBrand')->name('searchBrand');
 
 Auth::routes();

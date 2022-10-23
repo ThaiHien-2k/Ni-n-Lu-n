@@ -177,13 +177,13 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {   
-        $product = Stock::where('product_id','=',$product->id)
+        $models = Stock::where('product_id','=',$product->id)
                      ->get([
                             'name',
                             'quantity',
                         ]);
 
-        return view('products.show', compact ('product',));
+        return view('products.show', compact ('product','models'));
     }
     
 
@@ -239,7 +239,7 @@ class ProductController extends Controller
             'price'=>'required|integer',
             'insurance'=>'required',
             
-            // 'gender'=>'required|in:Male,Female,Unisex',
+            
             'config'=>'required',
         ]);
         if(request('image'))
@@ -250,7 +250,7 @@ class ProductController extends Controller
             $product->name=request('name');
             $product->brand=request('brand');
             $product->price=request('price');
-            // $product->gender=request('gender');
+            
             $product->insurance=request('insurance');
             $product->config=request('config');
             $product->image=$imagepath;
@@ -262,7 +262,7 @@ class ProductController extends Controller
             $product->name=request('name');
             $product->brand=request('brand');
             $product->price=request('price');
-            // $product->gender=request('gender');
+      
             $product->insurance=request('insurance');
             $product->config=request('config');
             $product->save();

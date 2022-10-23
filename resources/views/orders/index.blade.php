@@ -40,13 +40,12 @@
                         <div class="col-6 ">
                             <h6>Mã đơn hàng</h6>
                             <h6>Ngày đặt mua </h6>
-                            <br>
                             <h6>Tổng giá tiền</h6>
                             <h6>Tình trạng</h6>
                         </div>
                         <div class="col-6">
                             <h6>: {{ $order['id'] }}</h6>
-                            <h6>: {{ $order['created_at'] }}</h6>
+                            <h6>: {{ $order['created_at']->format('d/m/Y') }}</h6>
                             <h6>: {{ $order->cart->totalPrice}} vnđ</h6>
                             <h6>: Đang đóng gói</h6>
                         </div>

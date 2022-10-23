@@ -17,9 +17,9 @@
                         <div class="info-2">
                             <select id="size-dropdown">
                                 <option selected="true" value="nothing" disabled hidden>Click chọn mẫu</option>
-                                @foreach($sizes as $size)
-                                    @if($size->quantity > 0)
-                                        <option value="{{ $size->name }}">{{ $size->name }}</option>
+                                @foreach($models as $model)
+                                    @if($model->quantity > 0)
+                                        <option value="{{ $model->name }}">{{ $model->name }}</option>
                                     @endif
                                 @endforeach
                             </select>

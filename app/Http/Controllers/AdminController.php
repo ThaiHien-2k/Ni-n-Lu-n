@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\User;
 use App\Profile;
+use App\Comment;
+use App\Product;
 // use App\Reminder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,18 +24,6 @@ class AdminController extends Controller
      
         
         
-        // if(Reminder::find(1)==null)
-        // {
-        //     $reminder=new Reminder();
-        //     $reminder->id = 1;
-        //     $reminder->reminder="Type something";
-        //     $reminder->save();
-        //     $reminder = Reminder::find(1);
-        // }
-        // else
-        // {
-        //     $reminder = Reminder::find(1);
-        // }
         
         $gross = Order::get();
         $gross->transform(function($order,$key){
@@ -56,6 +46,14 @@ class AdminController extends Controller
         $orders=Order::orderBy('created_at','DESC')->get();
         
         return view('admin.order',compact('orders'));
+    }
+
+    public function comment()
+    {
+        $comments=comment::orderBy('status','DESC')->orderBy('created_at','DESC')->get();
+        $users=User::get();
+        $products=Product::get();
+        return view('admin.comment',compact('comments','users','products'));
     }
 
     public function show_order($id)

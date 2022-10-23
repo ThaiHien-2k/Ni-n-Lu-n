@@ -75,13 +75,13 @@ class StockController extends Controller
     public function addstock()
     {
         $this->validate(request(),[
-            'size'=>'required|string',
+            'model'=>'required|string',
             'quantity'=>'required|integer',
         ]);
 
         $stock = new Stock();
         $stock->product_id=request('product');
-        $stock->name=request('size');
+        $stock->name=request('model');
         $stock->quantity=request('quantity');
         $stock->save();
 
@@ -97,12 +97,12 @@ class StockController extends Controller
     public function editstock(Request $request, $id)
     {
         $this->validate(request(),[
-            'size'=>'required|string',
+            'model'=>'required|string',
             'quantity'=>'required|integer',
         ]);
 
         $stock=Stock::findOrFail($id);
-        $stock->name=request('size');
+        $stock->name=request('model');
         $stock->quantity=request('quantity');
         $stock->save();
         

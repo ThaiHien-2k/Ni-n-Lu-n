@@ -50,11 +50,13 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <!-- <a href="{{ route('profile.edit',['user'=>Auth::user()->id ]) }}" class="dropdown-item">Chỉnh sửa mật khẩu</a> -->
+                               
                                 
-                                @if(Auth::user()->role == 'Customer')
-                                <a href="{{ route('order.show',['user'=>Auth::user()->id]) }}" class="dropdown-item">Lịch sử mua hàng</a>
+                                @if(Auth::user()->role == 'Admin')
+                                <a href="{{ route('home.index') }}" class="dropdown-item">Xem trang mua hàng</a>
                                 @endif
+
+                                <a href="{{ route('profile.edit',['user'=>Auth::user()->id ]) }}" class="dropdown-item">Chỉnh sửa mật khẩu</a>
                                 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -102,7 +104,7 @@
                                 <a href="{{ route('admin.order') }}" class="list-group-item admin-navigation">
                                         Quản lý bảo hành
                                 </a>
-                                <a href="{{ route('admin.order') }}" class="list-group-item admin-navigation">
+                                <a href="{{ route('admin.comment') }}" class="list-group-item admin-navigation">
                                         Quản lý bình luận
                                 </a>
                             </ul>
@@ -128,7 +130,7 @@
 @yield('script')
 <script>
 
-function product_size()
+function product_model()
         {
             var id =JSON.stringify($('#product-list').val());
             
@@ -147,7 +149,7 @@ function product_size()
         }
 
         $(document).on('change','#product-list',function(){
-            product_size();
+            product_model();
         });
     
 </script>

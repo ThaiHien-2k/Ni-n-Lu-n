@@ -13,13 +13,7 @@ class HomeController extends Controller
         return view('home.index',compact('products'));
         
     }
-    public function random()
-     
-    {
-        $products = Product::orderByRaw('RAND()')->take(4)->get();
-        return view('home.index',compact('products'));
-        
-    }
+    
 
 
 }

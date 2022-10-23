@@ -11,8 +11,8 @@
                 @csrf
                 <div class="row ">
                     
-                    <div class="col-12">
-                        <h6>Thông tin giao hàng</h6>
+                    <div class="col-12" style='text-align:center;'>
+                        <h2>Thông tin giao hàng</h2>
                         <hr>
                     </div>
 
@@ -59,13 +59,23 @@
                             </div>
                         </div>
                     </div>
-
-                    
-
-                   
-
-
-                </div>
+              
+                    <div class="col-12">
+                        <label for="payment" class="">{{ __('Phương thức thanh toán') }}</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment" id="payment" value="Giao Hàng Nhận Tiền" checked>
+                                <label class="form-check-label" for="payment">Giao Hàng Nhận Tiền</label><br>
+                            </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment" id="payment" value="ATM">
+                                <label class="form-check-label" for="payment">ATM</label><br>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment" id="payment" value="Ví Điện tử" >
+                                <label class="form-check-label" for="payment">Ví Điện tử</label>    
+                        </div>
+                        </div>
+                    </div>
                 
                 <button type="submit" class="button-primary w-100">Thanh toán</button>
             

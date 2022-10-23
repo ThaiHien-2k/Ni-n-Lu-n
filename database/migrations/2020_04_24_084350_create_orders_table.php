@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
 
             $table->text('address');
 
-            $table->integer('payment_id')->nullable();
+            $table->text('payment')->nullable();
             $table->text('status')->nullable();;
             
         });

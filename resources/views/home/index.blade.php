@@ -46,27 +46,32 @@
 <!-- icon -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <div class="collapse navbar-collapse " id="navbarNav" >
+<form action="{{ route('searchBrand') }}" method="GET">
+
     <ul class="navbar-nav" >
+    
+      <li class="nav-item">
+      <button type="submit" name="productBrand" value="ASUS"><img src="{{ asset('/storage/icon/logo-asus-149x40.png') }}"  alt="" style="padding-right:40px;"></button>
+      </li>
+      <li class="nav-item">
+      <button type="submit" name="productBrand" value="ACER"> <img src="{{ asset('/storage/icon/logo-acer-149x40.png') }}" style="margin-right:40px;"></button>
+      </li>
+    
+      <li class="nav-item">
+      <button type="submit" name="productBrand" value="DELL"><img src="{{ asset('/storage/icon/logo-dell-149x40.png') }}"   alt="" style="margin-right:40px;"></button>
+      </li>
+      <li class="nav-item">
+      <button type="submit" name="productBrand" value="HP"><img src="{{ asset('/storage/icon/logo-hp-149x40-1.png') }}" alt="" style="margin-right:40px;"></button>
+      </li>
+      <li class="nav-item">
+      <button type="submit" name="productBrand" value="APPLE"><img src="{{ asset('/storage/icon/logo-macbook-149x40.png') }}"   alt="" style="margin-right:40px;"></button>
+      </li>
+      <li class="nav-item">
+      <button type="submit" name="productBrand" value="MSI"><img src="{{ asset('/storage/icon/logo-msi-149x40.png') }}"  style="margin-right:40px;"></button>
+      </li>
       
-      <li class="nav-item">
-        <a href="{{ route('product.brand') }}" id='ASUS' class="brand" name="ASUS" ><img src="{{ asset('/storage/icon/logo-asus-149x40.png') }}"  alt="" style="margin-right:40px;"></a>
-      </li>
-      <li class="nav-item">
-        <img src="{{ asset('/storage/icon/logo-acer-149x40.png') }}"  alt="" style="margin-right:40px;">
-      </li>
-      <li class="nav-item">
-        <img src="{{ asset('/storage/icon/logo-dell-149x40.png') }}"  alt="" style="margin-right:40px;">
-      </li>
-      <li class="nav-item">
-        <img src="{{ asset('/storage/icon/logo-hp-149x40-1.png') }}"  alt="" style="margin-right:40px;">
-      </li>
-      <li class="nav-item">
-        <img src="{{ asset('/storage/icon/logo-macbook-149x40.png') }}"  alt="" style="margin-right:40px;">
-      </li>
-      <li class="nav-item">
-        <img src="{{ asset('/storage/icon/logo-msi-149x40.png') }}"  alt="" style="margin-right:40px;">
-      </li>
     </ul>
+    </form>
   </div>
 </nav>
     
@@ -89,11 +94,11 @@
       </div>
       @endforeach
     </div>
-    <!-- FEATURED SHOES [E]-->
+<!--  -->
     <h2 class="pt-4">BÁN CHẠY NHẤT</h2>
     <div class="row d-flex justify-content-center">
    
-      @foreach (Arr::random($products) as $product)   
+      @foreach ($products as $product)   
       
       <div class="col-lg-3 col-md-6 col-sm-6 col-6 pt-3">
         <div class="card">

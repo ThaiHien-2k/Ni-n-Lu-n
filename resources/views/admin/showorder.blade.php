@@ -2,49 +2,37 @@
 
 @section ('content')
 
-<div class="col-8 col-md-8 col-sm-8 col-lg-8">s
+<div class="col-8 col-md-8 col-sm-8 col-lg-8">
     <div class="card">
         <div class="card-header">
             <div class="row">
             @foreach ($ids as $id)
-            <div class="col-12 col-lg-6 col-md-6 col-sm-12 pt-2">
+            <div class="col-12 ">
                 <h5>Chi tiết đơn hàng</h5>
                 <hr>
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-6">
                         Mã đơn<br>
-                        <!-- Phương thức thanh toán <br> -->
-                        
                         Tên khách hàng <br>
                         Số điện thoại <br>
+                        Địa chỉ giao hàng<br>
+                        Phương thức thanh toán <br>
                         Tình trạng
         
                     </div>
-                    <div class="col-7">
-                        : {{ $id->id }} <br>
-                        <!-- : {{ $id->payment_id }} <br> -->
-                       
+                    <div class="col-6">
+                        : {{ $id->id }} <br>   
                         : {{ $id->name }} <br>
-                        : {{ $id->phonenumber }} <br>
-                        : Đang đóng gói
+                        : {{ $id->phonenumber }} <br>  
+                        : {{ $id->address }} <br>
+                        : {{ $id->payment }} <br>                     
+                        : {{ $id->status }} <br>
+                        <button type="button" class="btn btn-success"><a href="{{ route('home.index') }}" style="color: unset;">Chỉnh sửa trạng thái</a></button></div>
                     </div>
                 </div>
                 
             </div>
             
-
-            <div class="col-12 col-lg-6 col-md-6 col-sm-12 pt-2">
-                <h5>Địa chỉ giao hàng</h5>
-                <hr>
-                <div class="row">
-                    
-                    <div class="col-7">
-                       
-                       {{ $id->address }} <br>
-                        
-                    </div>
-                </div>
-            </div>
            @endforeach
         </div>
         </div>
@@ -63,7 +51,7 @@
                                     <h5>{{ $item['item']['name'] }}</h5>
                                 </div>
                                 <div class="detail-2">
-                                    <h6>Mẫu: {{ $item['size'] }}</h6>
+                                    <h6>Mẫu: {{ $item['model'] }}</h6>
                                 </div>
                                 
                                 <div class="detail-4">
