@@ -13,7 +13,20 @@ class HomeController extends Controller
         return view('home.index',compact('products'));
         
     }
+
+    public function contact()
+    {
+       
+        return view('home.contact');
+        
+    }
     
 
+    public function introduce()
+    {
+       
+        return view('home.introduce');
+        
+    }
 
 }

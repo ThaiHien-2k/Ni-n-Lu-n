@@ -13,14 +13,7 @@ class ProfilesTableSeeder extends Seeder
     public function run()
     {
         DB::table('profiles')->insert([
-            [
-                'id'=>1,
-                'user_id'=>1,
-                'phonenumber'=>'011151552928',
-              
-                'address'=>'Buangkok Green 512-4a',
-            
-            ],
+        
            
 
         ]);

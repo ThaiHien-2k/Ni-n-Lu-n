@@ -23,7 +23,7 @@ class CommentsTable extends Migration
             $table->integer('product_id')->unsigned();
             $table->integer('parent_id')->unsigned()->nullable();
             $table->text('body');
-            $table->int('status');
+            $table->integer('status');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -17,13 +17,13 @@ class SearchController extends Controller
     {
         $search = $request->input('searchProduct');
 
-    // Search in the title and body columns from the posts table
+    
     $products = Product::query()
         ->where('name', 'LIKE', "%{$search}%")
       
         ->get();
 
-    // Return the search view with the resluts compacted
+  
     return view('search.search', compact('products'));
     }
 
@@ -31,8 +31,7 @@ class SearchController extends Controller
     function SearchProductBrand(Request $request)
     {
         $search = $request->input('productBrand');
-        // $search = $request->all();
-        // dd($search);
+        
   
     $products = Product::query()
         ->where('brand', 'LIKE', "%{$search}%")

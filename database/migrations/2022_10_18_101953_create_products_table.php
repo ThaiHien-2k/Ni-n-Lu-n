@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('brand');
             $table->integer('price');
             $table->string('image');
-            $table->TEXT('config');
+      
             $table->integer('insurance')->default(0);
             $table->integer('quantity')->default(1);
             $table->timestamps();

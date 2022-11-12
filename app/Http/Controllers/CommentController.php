@@ -39,7 +39,7 @@ class CommentController extends Controller
 
     public function replied($id)
     {     
-        $comment = Comment::find($id)->update(['status' => '1']);
+        $comment = Comment::find($id)->update(['status' => '2']);
 
         return redirect()->route('admin.comment');
     }

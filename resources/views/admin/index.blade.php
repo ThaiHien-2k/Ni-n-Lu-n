@@ -26,7 +26,7 @@
         <div class="col-4 totalorder">
             <div class="card">
                 <div class="card-header">
-                    <i class="fa fa-dropbox"> Số đơn hàng chưa duyệt</i> 
+                    <i class="fa fa-dropbox"> Tổng số đơn hàng </i> 
                 </div>
                 <div class="card-body">
                     <h5>{{ $totalorder }} </h5>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="card-body">
                     
-                    <h5>{{ $totalgross }} vnđ</h5>
+                    <h5>{{ number_format($totalgross, -3,',')}}đ</h5>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                                 <div class="col-12 d-flex">
                                     <div class="id" style="width:150px">Mã đơn: {{ $order->id }}</div>
                                     <div class="name">Tên Khách Hàng: {{ $order->name }}</div>
-                                    <div class="status text-success ml-auto">Trạng thái: {{ $order->status }}</div> 
+                                    <div class="status text ml-auto">Trạng Thái: <p  class="status text-success">{{ $order->status }}</p></div> 
                                 </div>
                             </div>
                         </a>

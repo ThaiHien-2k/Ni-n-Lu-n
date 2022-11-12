@@ -14,15 +14,16 @@
 @foreach($products as $product)
                     <div class="col-lg-4 col-md-6 col-sm-12 pt-3">
                         <div class="card">
-                            <a href="product/'.$product->id.'">
+                            <!-- <a href="product/'.$product->id.'"> -->
                                 <div class="card-body ">
                                     <div class="product-info">
                                     
                                     <div class="info-1"><img src="{{asset('/storage/'.$product->image)}}" alt=""></div>
-                                    <div class="info-2"><h4>{{$product->name}}</h4></div>
-                                    <div class="info-4"><h5>{{$product->brand}}</h5></div>
+                                    <div class="info-2" style="font: size 15px; text-align: center;"><a href="product/{{ $product->id }}">{{ $product->name }}</a></div>
+                <br>
+                <div class="info-4"><h5><center>{{ $product->brand }}</center></h5></div>
                                     
-                                    <div class="info-3"><h5>{{$product->price}} vnđ</h5></div>
+                                    <div class="info-3"><h5>{{number_format($product->price, -3,',') }}đ</h5></div>
                                     </div>
                                 </div>
                             </a>

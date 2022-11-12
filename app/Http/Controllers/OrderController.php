@@ -15,4 +15,19 @@ class OrderController extends Controller
         });
         return view('orders.index',compact(['orders']));
     }
+
+    public function changeStatus(Request $request,$id)
+    {
+
+        // $order= Order::find($id);
+        $new = $request->input('changeStatus');
+        // $order->update(['status'=>$new]);
+
+       $order = Order::where('id',$id)->update(['status'=>$new]);
+
+    
+        
+       return back()->with('success','Chỉnh sửa trạng thái thành công!');
+       
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Product;
+use App\Config;
 use App\Stock;
 use App\Cart;
 use Illuminate\Http\Request;
@@ -14,13 +15,12 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = DB::table('products')->where('brand','like',"%ASUS%")->get();
+        $products = Product::get();
         // $genders = Product::select('gender')->groupBy('gender')->get();
-        $brands = Product::select('brand')->where('brand','like',"%ASUS%")->get();
-        $configs = Product::select('config')->groupBy('config')->get();
-    
+        // $brands = Product::select('brand')->where('brand','like',"%ASUS%")->get();
+        
 
-        return view('products.index',compact(['brands','configs','products']));
+        return view('products.index',compact(['products']));
         
     }
 
@@ -70,10 +70,12 @@ class ProductController extends Controller
                                     <div class="product-info">
                                     
                                     <div class="info-1"><img src="'.asset('/storage/'.$product->image).'" alt=""></div>
-                                    <div class="info-2"><h4>'.$product->name.'</h4></div>
-                                    <div class="info-4"><h5>'.$product->brand.'</h5></div>
+                                    <div class="info-2" style="font: size 15px; text-align: center;">'.$product->name.'</div>
+                                    <br>
+                                    <br>
+                                    <div class="info-4"><h5><center>'.$product->brand.'</center></h5></div>
                                     
-                                    <div class="info-3"><h5>'.$product->price.' vnđ</h5></div>
+                                    <div class="info-3"><h5>'.number_format($product->price, -3,',').' vnđ</h5></div>
                                     </div>
                                 </div>
                             </a>
@@ -107,18 +109,15 @@ class ProductController extends Controller
         {
             
             $query = json_decode($request->get('query'));
-            $price = json_decode($request->get('price'));
-            // $gender = json_decode($request->get('gender'));
+      
+           
             $brand =  $products->where('brand','like','%ASUS%');
             if(!empty($query))
             {
                 $products= $products->where('name','like','%'.$query.'%');        
             }
-            if(!empty($price))
-            {
-                $products= $products->where('price','<=',$price);
-            }
-            
+          
+          
             if(!empty($brand))
             {
                 $products= $products->whereIn('brand',$brand);
@@ -140,10 +139,11 @@ class ProductController extends Controller
                                     <div class="product-info">
                                     
                                     <div class="info-1"><img src="'.asset('/storage/'.$product->image).'" alt=""></div>
-                                    <div class="info-2"><h4>'.$product->name.'</h4></div>
+                                    <div class="info-2" style="font: size 15px; text-align: center;">'.$product->name.'</div>
+                                    <br>
                                     <div class="info-4"><h5>'.$product->brand.'</h5></div>
                                     
-                                    <div class="info-3"><h5>'.$product->price.' vnđ</h5></div>
+                                    <div class="info-3"><h5>'.number_format($product->price, -3,',').' vnđ</h5></div>
                                     </div>
                                 </div>
                             </a>
@@ -182,8 +182,8 @@ class ProductController extends Controller
                             'name',
                             'quantity',
                         ]);
-
-        return view('products.show', compact ('product','models'));
+        $configs = Config::where('product_id','=',$product->id)->get(['card','chipset','screen','battery','technology','ram','memory','operaring','port'])->first();
+        return view('products.show', compact ('product','models','configs'));
     }
     
 
@@ -203,22 +203,35 @@ class ProductController extends Controller
             'brand'=>'required|in:ASUS,DELL,MSI,HP,APPLE,ACER',
             'price'=>'required|integer',
             'insurance'=>'required',
-            'config'=>'required',
+           
         ]);
        
         $imagepath = $request->image->store('products','public');
         
         $product = new Product();
+       
         $product->name=request('name');
         $product->brand=request('brand');
         $product->price=request('price');
         $product->insurance=request('insurance');
-        $product->config=request('config');
+    
         $product->image=$imagepath;
-
-        
-
         $product->save();
+        
+        $config = new Config();
+        $config->product_id=  $product->id;
+        $config->card=request('card');
+        $config->screen=request('screen');
+        $config->battery=request('battery');
+        $config->technology=request('technology');
+        $config->ram=request('ram');
+        $config->memory=request('memory');
+        $config->operaring=request('operaring');
+        $config->chipset=request('chipset');
+        $config->port=request('port');
+
+        $config->save();
+        
         // DB:: table('products')->insert($product);
     
         return redirect()->route('admin.product')->with('success','Thêm sản phẩm thành công!');
@@ -227,21 +240,22 @@ class ProductController extends Controller
     public function editform($id)
     {
         $product = Product::findOrFail($id);
-        return view('admin.editproduct',compact('product'));
+        $config =  Config::where('product_id',$id)->get(['card','chipset','screen','battery','technology','ram','memory','operaring','port'])->first();
+        return view('admin.editproduct',compact('product','config'));
     }
 
     public function edit(Request $request,$id)
     {
-        $this->validate(request(),[
-            'image'=>'',
-            'name'=>'required|string',
-            'brand'=>'required|in:ASUS,DELL,MSI,HP,APPLE,ACER',
-            'price'=>'required|integer',
-            'insurance'=>'required',
+        // $this->validate(request(),[
+        //     'image'=>'',
+        //     'name'=>'required|string',
+        //     'brand'=>'required|in:ASUS,DELL,MSI,HP,APPLE,ACER',
+        //     'price'=>'required|integer',
+        //     'insurance'=>'required',
             
             
-            'config'=>'required',
-        ]);
+        //     'config'=>'required',
+        // ]);
         if(request('image'))
         {
             $imagepath = $request->image->store('products','public');
@@ -252,9 +266,23 @@ class ProductController extends Controller
             $product->price=request('price');
             
             $product->insurance=request('insurance');
-            $product->config=request('config');
+           
             $product->image=$imagepath;
             $product->save();
+
+            $config =  Config::where('product_id',$id)->get()->first();
+        $config->product_id=  $id;
+        $config->card=request('card');
+        $config->screen=request('screen');
+        $config->battery=request('battery');
+        $config->technology=request('technology');
+        $config->ram=request('ram');
+        $config->memory=request('memory');
+        $config->operaring=request('operaring');
+        $config->chipset=request('chipset');
+        $config->port=request('port');
+
+        $config->save();
         }
         else
         {
@@ -264,8 +292,22 @@ class ProductController extends Controller
             $product->price=request('price');
       
             $product->insurance=request('insurance');
-            $product->config=request('config');
+           
             $product->save();
+
+            $config =  Config::where('product_id',$id)->get()->first();
+            $config->product_id= $id;
+            $config->card=request('card');
+            $config->screen=request('screen');
+            $config->battery=request('battery');
+            $config->technology=request('technology');
+            $config->ram=request('ram');
+            $config->memory=request('memory');
+            $config->operaring=request('operaring');
+            $config->chipset=request('chipset');
+            $config->port=request('port');
+    
+            $config->save();
         }
         return redirect()->route('admin.product')->with('success','Sửa sản phẩm thành công!');
         
@@ -275,7 +317,7 @@ class ProductController extends Controller
     {
         Product::where('id',$id)->delete();
         Stock::where('product_id',$id)->delete();
-
+        Config::where('product_id',$id)->delete();
         return redirect()->route('admin.product')->with('success','Xóa sản phẩm thành công!');
     }
 
@@ -286,5 +328,12 @@ class ProductController extends Controller
         return view('admin.product', compact ('products'));
     }
 
+    public function detail($id)
+    {
+        $products = Product::where('id',$id)->get();
+        $configs = Config::where('product_id',$id)->get()->first();
+        // dd($products);
+        return view('admin.productDetail', compact ('products','configs'));
+    }
 
 }

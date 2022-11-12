@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <div>
                         <select name="brand" id="addproductbrand" class="form-control" value="{{ old('brand') ?? $product->brand  }}">
-                            <option selected="true" value="" disabled hidden>Chọn thương hiệu sản phẩm</option>
+                            <option selected="true" value="{{ old('brand') ?? $product->brand  }}" >{{ old('brand') ?? $product->brand  }}</option>
                             <option value="ASUS">ASUS</option>
                             <option value="DELL">DELL</option>
                             <option value="MSI">MSI</option>
@@ -60,13 +60,37 @@
             <div class="col-12">
                 <div class="form-group">
                     <label for="config" class="">{{ __('cấu hình') }}</label>
-                    <textarea name="config"  id="config" class="form-control @error('config') is-invalid @enderror" value=""  rows="10" required autocomplete="name" autofocus>{{ old('config') ?? $product->config }}</textarea>
-                    @error('config')
-
-                    <div style="color:red; font-weight:bold; font-size:0.7rem;">{{ $message }}</div>
-
-                    @enderror
+                   
+                    <hr>
+                    <input id="card" type="text" placeholder="Nhập vào card máy" class="form-control @error('card') is-invalid @enderror" 
+                    name="card" value="{{ old('card')?? $config->card }}" required >
+                    <br>
+                    <input id="chipset" type="text" placeholder="Nhập vào chip máy" class="form-control @error('chipset') is-invalid @enderror" 
+                    name="chipset" value="{{ old('chipset') ?? $config->chipset}}" required >
+                    <br>
+                    <input id="operaring" type="text" placeholder="Nhập vào hệ điều hành máy" class="form-control @error('operaring') is-invalid @enderror" 
+                    name="operaring" value="{{ old('operaring') ?? $config->operaring}}" required >
+                    <br>
+                    <input id="ram" type="text" placeholder="Nhập vào số ram của máy" class="form-control @error('ram') is-invalid @enderror" 
+                    name="ram" value="{{ old('ram') ?? $config->ram}}" required >
+                    <br>
+                    <input id="memory" type="text" placeholder="Nhập vào bộ nhớ máy" class="form-control @error('memory') is-invalid @enderror" 
+                    name="memory" value="{{ old('memory') ?? $config->memory}}" required >
+                    <br>
+                    <input id="battery" type="text" placeholder="Nhập vào dung lượng pin máy" class="form-control @error('battery') is-invalid @enderror" 
+                    name="battery" value="{{ old('battery') ?? $config->battery}}" required >
+                    <br>
+                    <input id="port" type="text" placeholder="Nhập vào các cổng của máy" class="form-control @error('port') is-invalid @enderror" 
+                    name="port" value="{{ old('port') ?? $config->port}}" required >
+                    <br>
+                    <input id="screen" type="text" placeholder="Nhập vào màn hình máy" class="form-control @error('screen') is-invalid @enderror" 
+                    name="screen" value="{{ old('screen') ?? $config->screen}}" required >
+                    <br>
+                    <input id="technology" type="text" placeholder="Nhập vào các công nghệ của máy" class="form-control @error('technology') is-invalid @enderror" 
+                    name="technology" value="{{ old('technology') ?? $config->technology}}" required >
                 </div>
+                <hr>
+                
             </div>
             <div class="col-12">
                 <div class="form-group">

@@ -21,7 +21,7 @@
                                 <div class="item-detail mr-auto d-flex flex-column justify-content-center">
                                     <div class="info-2"><h5>{{ $product['item']['name'] }}</h5> </div> 
                                     <div class="info-3"><h6>Mẫu: {{ $product['model'] }}</h6></div>
-                                   
+                                    <div class="info-3">Giá: {{ number_format($product['price'], -3,',') }}đ</div>
                                     <div class="info-5">
                                         <a href="{{ route('cart.remove',['id'=>key($products)]) }}" class="remove-cart">
                                             <i class="fa fa-trash"></i> 
@@ -29,7 +29,7 @@
                                     </div>
                                 </div>
 
-                                <div class="item-quantity">{{ $product['price'] }} vnđ</div>
+                              
                             </div>
                         @endforeach
                     </div>
@@ -44,7 +44,7 @@
                                 
                                 
                                 <div class="info-2">
-                                    Tổng: {{ $totalPrice }} vnđ
+                                    Tổng: {{ number_format($totalPrice, -3,',') }} đ
                                 </div>
                                 <div class="info-3 pt-3">
                                     <a href="{{ route('checkout.index') }}"><button class="button-primary w-100">Thanh Toán</button></a>

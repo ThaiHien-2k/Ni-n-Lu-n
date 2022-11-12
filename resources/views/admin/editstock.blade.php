@@ -13,11 +13,11 @@
         <div class="row ">
 
             <div class="col-12">
-                <label for="name" class="">{{ __('Mẫu') }}</label>
+                <label for="model" class="">{{ __('Mẫu') }}</label>
                 <div class="form-group">
                     <div>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ?? $stock->name}}" required autocomplete="name" autofocus>
-                        @error('name')
+                        <input id="model" type="text" class="form-control @error('model') is-invalid @enderror" name="model" value="{{ old('name') ?? $stock->name}}" required autocomplete="model" autofocus>
+                        @error('model')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -42,7 +42,7 @@
 
         </div>
         
-        <button type="submit" class="btn btn-primary w-100">Chỉnh sửa</button>
+        <button type="submit" class="btn btn-primary ">Chỉnh sửa</button>
     
     </form>
 

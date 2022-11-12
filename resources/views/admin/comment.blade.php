@@ -44,9 +44,9 @@
                     <td scope="row">{{ $product->name  }}</td>
                     <td scope="row">{{ $comment->created_at->format('d/m/Y')  }}</td>
                     @if($comment->status == 2)
-                    <td scope="row">Chưa Đọc</td>
-                    @elseif($comment->status == 1)
                     <td scope="row">Đã Đọc</td>
+                    @elseif($comment->status == 1)
+                    <td scope="row">Chưa Đọc</td>
                     @endif
                     @endif
                     

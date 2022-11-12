@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 use App\Order;
 use App\User;
+use App\Laptop;
 use App\Profile;
 use App\Comment;
 use App\Product;
+use App\Insurance;
 // use App\Reminder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,7 +38,7 @@ class AdminController extends Controller
         }
 
 
-        $latest=Order::orderBy('created_at','DESC')->take(5)->get();
+        $latest=Order::orderBy('created_at','DESC')->where('status','=','Đã đặt hàng')->take(5)->get();
         
         return view('admin.index',compact('latest','totaluser','totalorder','totalgross',));
     }
@@ -50,7 +52,7 @@ class AdminController extends Controller
 
     public function comment()
     {
-        $comments=comment::orderBy('status','DESC')->orderBy('created_at','DESC')->get();
+        $comments=Comment::orderBy('status','ASC')->orderBy('created_at','ASC')->get();
         $users=User::get();
         $products=Product::get();
         return view('admin.comment',compact('comments','users','products'));
@@ -58,6 +60,16 @@ class AdminController extends Controller
 
     public function show_order($id)
     {
+        $laptopss = new Laptop();
+        // if($laptopss->order_id){
+            $laptopss->order_id=$id;
+            $laptopss->nameOwner=1;
+            $laptopss->phone=1;
+            $laptopss->save();
+
+        // }
+        
+        $laptops= Laptop::where('order_id',$id)->orderBy('created_at', 'DESC')->get();
         $ids =DB::table('orders')->where('id',$id)->get();
 
         $order =DB::table('orders')->where('id',$id)->get();
@@ -65,7 +77,9 @@ class AdminController extends Controller
             $order->cart = unserialize($order->cart);
             return $order;
         });
-        return view('admin.showorder',compact('order','ids'));
+        Laptop::where('serial','=',null)->delete();
+        // dd($laptops);
+        return view('admin.showorder',compact('order','ids','laptops'));
     }
 
     public function user()
@@ -74,12 +88,5 @@ class AdminController extends Controller
         return view('admin.user',compact('users'));
     }
 
-    // public function updatereminder()
-    // {
-    //     $reminder= Reminder::find(1);
-    //     $reminder->reminder = request('reminder');
-    //     $reminder->save();
-
-    //     return redirect()->route('admin.index')->with('success','Successfully updated the reminder!');
-    // }
+   
 }

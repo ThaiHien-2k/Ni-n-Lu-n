@@ -56,7 +56,7 @@
                                 <a href="{{ route('home.index') }}" class="dropdown-item">Xem trang mua hàng</a>
                                 @endif
 
-                                <a href="{{ route('profile.edit',['user'=>Auth::user()->id ]) }}" class="dropdown-item">Chỉnh sửa mật khẩu</a>
+                                <a href="{{ route('pass.edit',['user'=>Auth::user()->id ]) }}" class="dropdown-item">Chỉnh sửa mật khẩu</a>
                                 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -100,12 +100,16 @@
                                 <a href="{{ route('admin.order') }}" class="list-group-item admin-navigation">
                                         Quản lý đơn hàng
                                 </a>
-                                <!-- chưa làm -->
-                                <a href="{{ route('admin.order') }}" class="list-group-item admin-navigation">
-                                        Quản lý bảo hành
-                                </a>
                                 <a href="{{ route('admin.comment') }}" class="list-group-item admin-navigation">
                                         Quản lý bình luận
+                                </a>
+                                
+                                <a href="{{ route('admin.insurance') }}" class="list-group-item admin-navigation">
+                                        Quản lý bảo hành
+                                </a>
+                               
+                                <a href="{{ route('admin.laptop') }}" class="list-group-item admin-navigation">
+                                        Quản lý serial
                                 </a>
                             </ul>
                         </div>

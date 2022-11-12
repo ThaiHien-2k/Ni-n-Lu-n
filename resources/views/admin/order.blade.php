@@ -15,7 +15,7 @@
                         <div class="col-12 d-flex">
                             <div class="id" style="width:150px">Mã đơn: {{ $order->id }}</div>
                             <div class="name">Tên khách hàng: {{ $order->name }}</div>
-                            <div class="status text-success ml-auto">Trạng Thái: {{ $order->status }}</div> 
+                            <div class="status text ml-auto">Trạng Thái: <p  class="status text-success">{{ $order->status }}</p></div> 
                         </div>
                     </div>
                 </a>

@@ -62,7 +62,7 @@
 
                         <div class=" row mb-0 mt-2">
                             <div class="col-12 offset-md-3">
-                                <a class="btn btn-link" href="{{ route('register') }}">Chưa có tài khoản? Đăng ký ở đây!</a><br>
+                            Chưa có tài khoản?<a class=" btn-link" href="{{ route('register') }}">Đăng ký ở đây!</a><br>
                                 
                                 
                             </div>

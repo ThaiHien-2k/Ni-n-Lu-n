@@ -79,7 +79,8 @@
 
                                     <a href="{{ route('profile.edit',['user'=>Auth::user()->id ]) }}" class="dropdown-item">Chỉnh sửa thông tin</a>
                                     
-                                  
+                                    <a href="{{ route('pass.edit',['user'=>Auth::user()->id ]) }}" class="dropdown-item">Đổi mật khẩu</a>
+                                    <a href="{{ route('profile.edit',['user'=>Auth::user()->id ]) }}" class="dropdown-item">Lịch sử bảo hành</a>
 
                                     @if(Auth::user())
                                     <a href="{{ route('order.show',['user'=>Auth::user()->id]) }}" class="dropdown-item">Lịch sử mua hàng</a>
@@ -112,10 +113,10 @@
         <a class="nav-link" href="{{ route('product.index') }}">Sẩn phẩm</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('product.index') }}">Giới thiệu</a>
+        <a class="nav-link" href="{{ route('home.introduce') }}">Giới thiệu</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('product.index') }}">Liên hệ</a>
+        <a class="nav-link" href="{{ route('home.contact') }}">Liên hệ</a>
       </li>
     
     <form class="form-inline my-2 my-lg-0" style="margin-left:250px ;" action="{{ route('search') }}" method="GET">

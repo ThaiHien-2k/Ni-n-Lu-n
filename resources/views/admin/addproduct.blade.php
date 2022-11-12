@@ -58,21 +58,43 @@
          
             <div class="col-12">
                 <div class="form-group">
-                    <label for="config" class="">cấu hình</label>
-                    <textarea name="config" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    @error('config')
-
-                    <div style="color:red; font-weight:bold; font-size:0.7rem;">{{ $message }}</div>
-
-                    @enderror
+                    <label class="">Cấu hình</label>
+                    <hr>
+                    <input id="card" type="text" placeholder="Nhập vào card máy" class="form-control @error('card') is-invalid @enderror" 
+                    name="card" value="{{ old('card') }}" required >
+                    <br>
+                    <input id="chipset" type="text" placeholder="Nhập vào chip máy" class="form-control @error('chipset') is-invalid @enderror" 
+                    name="chipset" value="{{ old('chipset') }}" required >
+                    <br>
+                    <input id="operaring" type="text" placeholder="Nhập vào hệ điều hành máy" class="form-control @error('operaring') is-invalid @enderror" 
+                    name="operaring" value="{{ old('operaring') }}" required >
+                    <br>
+                    <input id="ram" type="text" placeholder="Nhập vào số ram của máy" class="form-control @error('ram') is-invalid @enderror" 
+                    name="ram" value="{{ old('ram') }}" required >
+                    <br>
+                    <input id="memory" type="text" placeholder="Nhập vào bộ nhớ máy" class="form-control @error('memory') is-invalid @enderror" 
+                    name="memory" value="{{ old('memory') }}" required >
+                    <br>
+                    <input id="battery" type="text" placeholder="Nhập vào dung lượng pin máy" class="form-control @error('battery') is-invalid @enderror" 
+                    name="battery" value="{{ old('battery') }}" required >
+                    <br>
+                    <input id="port" type="text" placeholder="Nhập vào các cổng của máy" class="form-control @error('port') is-invalid @enderror" 
+                    name="port" value="{{ old('port') }}" required >
+                    <br>
+                    <input id="screen" type="text" placeholder="Nhập vào màn hình máy" class="form-control @error('screen') is-invalid @enderror" 
+                    name="screen" value="{{ old('screen') }}" required >
+                    <br>
+                    <input id="technology" type="text" placeholder="Nhập vào các công nghệ của máy" class="form-control @error('technology') is-invalid @enderror" 
+                    name="technology" value="{{ old('technology') }}" required >
                 </div>
+                <hr>
             </div>
-
+          
             <div class="col-12">
                 <div class="form-group">
                     <label for="insurance" class="">Bảo hành</label>
                     <div>
-                        <input id="nainsuranceme" type="text" placeholder="Nhập số tháng" class="form-control @error('insurance') is-invalid @enderror" name="insurance" value="{{ old('insurance') }}" required autocomplete="insurance" autofocus>
+                        <input id="insurance" type="text" placeholder="Nhập số tháng" class="form-control @error('insurance') is-invalid @enderror" name="insurance" value="{{ old('insurance') }}" required autocomplete="insurance" autofocus>
                         @error('insurance')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

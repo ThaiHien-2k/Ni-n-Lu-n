@@ -36,10 +36,11 @@
                     <td><img style="height:100px;" src="{{ asset('/storage/'.$product->image) }}" alt=""></td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->brand }}</td>
-                    <td>{{ $product->price }} vnđ</td>
+                    <td>{{ number_format($product->price, -3,',')}}đ</td>
         
                     <td>
-                        <a href="{{ route('product.editform',['id'=>$product->id]) }}" class="btn btn-primary w-100 m-1" style="color:white;">Chỉnh sửa</a>
+                        <a href="{{ route('product.editform',['id'=>$product->id]) }}" class="btn btn-warning w-100 m-1" style="color:white;">Chỉnh sửa</a>
+                        <a href="{{ route('admin.productDetail',['id'=>$product->id]) }}" class="btn btn-primary w-100 m-1" style="color:white;">Chi tiêt</a>
                         <a href="{{ route('product.remove',['id'=>$product->id]) }}" class="btn btn-danger w-100 m-1" style="color:white;">Xóa</a>
                     </td>
                   </tr>
