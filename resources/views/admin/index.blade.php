@@ -36,7 +36,7 @@
         <div class="col-4 totalgross">
             <div class="card">
                 <div class="card-header">
-                    <i class="fa fa-money"> Lợi nhuận tháng</i>
+                    <i class="fa fa-money">Tổng lợi nhuận</i>
                 </div>
                 <div class="card-body">
                     

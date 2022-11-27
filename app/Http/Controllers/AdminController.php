@@ -84,8 +84,14 @@ class AdminController extends Controller
 
     public function user()
     {
-        $users=DB::table('users')->leftjoin('profiles','users.id','=','profiles.user_id')->get();
+        $users=DB::table('users')->orderBy('users.id', 'ASC')->leftjoin('profiles','users.id','=','profiles.user_id')->get();
         return view('admin.user',compact('users'));
+    }
+    public function removeUser($id)
+    {
+        User::where('id',$id)->delete();
+        
+        return Back()->with('success','Xóa tài khoản thành công!');
     }
 
    

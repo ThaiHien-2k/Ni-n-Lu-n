@@ -80,7 +80,7 @@
                                     <a href="{{ route('profile.edit',['user'=>Auth::user()->id ]) }}" class="dropdown-item">Chỉnh sửa thông tin</a>
                                     
                                     <a href="{{ route('pass.edit',['user'=>Auth::user()->id ]) }}" class="dropdown-item">Đổi mật khẩu</a>
-                                    <a href="{{ route('profile.edit',['user'=>Auth::user()->id ]) }}" class="dropdown-item">Lịch sử bảo hành</a>
+                                    <a href="{{ route('ViewSearchInsuranceDetail') }}" class="dropdown-item">Lịch sử bảo hành</a>
 
                                     @if(Auth::user())
                                     <a href="{{ route('order.show',['user'=>Auth::user()->id]) }}" class="dropdown-item">Lịch sử mua hàng</a>

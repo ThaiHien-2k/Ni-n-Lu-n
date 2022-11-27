@@ -52,6 +52,7 @@ Route::get('/admin-stock/add', 'StockController@addform')->name('admin.addstockf
 Route::post('/admin-stock/add', 'StockController@addstock')->name('admin.addstock')->middleware(['auth','admin']);
 
 Route::get('/product','ProductController@index')->name('product.index');
+Route::get('/user/remove/{id}', 'AdminController@removeUser')->name('user.remove')->middleware(['auth','admin']);
 
 Route::get('/product/filter','ProductController@filter')->name('product.filter');
 
@@ -111,5 +112,15 @@ Route::get('/admin-insurance/addDetailForm/{id}/{time}', 'InsuranceController@ad
 Route::post('/admin-insurance/add', 'InsuranceController@create')->name('insuranceDetail.create')->middleware(['auth','admin']);
 
 Route::get('/admin-insurance/removeDetail/{id}','InsuranceController@removeInsuranceDetail')->name('insuranceDetail.remove')->middleware(['auth','admin']);
+
+Route::get('/admin-insurance/delivery/{id}','InsuranceController@delivery')->name('insuranceDetail.delivery')->middleware(['auth','admin']);
+Route::get('/admin-insurance/editDetailForm/{id}/{time}', 'InsuranceController@editDetailForm')->name('insuranceDetail.editDetailForm')->middleware(['auth','admin']);
+Route::patch('/admin-insurance/editDetail/{id}', 'InsuranceController@editDetail')->name('insuranceDetail.edit')->middleware(['auth','admin']);
+
+// search
+Route::get('/admin-laptop/ViewSearchInsuranceDetail', 'InsuranceController@ViewSearchInsuranceDetail')->name('ViewSearchInsuranceDetail');
+Route::get('/admin-laptop/chooseInsuranceTime', 'InsuranceController@searchInsuranceDetail')->name('searchInsuranceDetail');
+Route::get('/admin-laptop/viewDetail/{id}', 'InsuranceController@viewDetail')->name('viewDetail');
+Route::get('/admin-insurance/detail/{id}/{time}', 'InsuranceController@detail')->name('Detail');
 
 Auth::routes();

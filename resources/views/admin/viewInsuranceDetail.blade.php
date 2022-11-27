@@ -26,7 +26,7 @@
                     <strong>Lỗi: &nbsp; &nbsp;</strong> {{ $insurance->body }} <br>
                     <strong>Nhân viên tiếp nhận:&nbsp; &nbsp;</strong> {{ $insurance->nameStaff }}<br>
                     <strong>Ngày nhận máy:</strong>&nbsp;&nbsp; {{ date('d-m-Y', strtotime($insurance->dateTake)) }} <br>
-                    <strong>Ngày trả máy:</strong>&nbsp;&nbsp; {{ date('d-m-Y', strtotime($insurance->dateTake)) }}
+                    <strong>Ngày trả máy:</strong>&nbsp;&nbsp; {{ date('d-m-Y', strtotime($insurance->dateReturn)) }}
                     <br>
                     <strong>Tình trạng: &nbsp; &nbsp;</strong>{{ $insurance->status }}
         
@@ -40,7 +40,7 @@
                 </div>
                 
                 <a href="{{ route('insuranceDetail.addDetailForm',['id'=>$insurance->id,'time'=>$time])}}" class="btn btn-success " style="color:white;margin-top :20px;">Thêm</a>&nbsp;&nbsp;
-                <a href="" class="btn btn-primary " style="color:white;margin-top :20px;">Giao</a>
+                <a href="{{ route('insuranceDetail.delivery',['id'=>$insurance->id])}}" class="btn btn-primary " style="color:white;margin-top :20px;">Giao</a>
                 <hr>
         @endforeach
         </div>
@@ -66,7 +66,7 @@
                    
         
                     <td>
-                        <a href="" class="btn btn-warning w-100 m-1" style="color:white;">Chỉnh sửa</a>
+                        <a href="{{ route('insuranceDetail.editDetailForm',['id'=>$insuranceDetail->id,'time'=>$time])}}" class="btn btn-warning w-100 m-1" style="color:white;">Chỉnh sửa</a>
                         <a href="{{ route('insuranceDetail.remove',['id'=>$insuranceDetail->id]) }}" class="btn btn-danger w-100 m-1" style="color:white;">Xóa</a>
                     </td>
                   </tr>

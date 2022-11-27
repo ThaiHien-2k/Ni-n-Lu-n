@@ -55,7 +55,7 @@
                                 @if(Auth::user()->role == 'Admin')
                                 <a href="{{ route('home.index') }}" class="dropdown-item">Xem trang mua hàng</a>
                                 @endif
-
+                              
                                 <a href="{{ route('pass.edit',['user'=>Auth::user()->id ]) }}" class="dropdown-item">Chỉnh sửa mật khẩu</a>
                                 
                                 <a class="dropdown-item" href="{{ route('logout') }}"

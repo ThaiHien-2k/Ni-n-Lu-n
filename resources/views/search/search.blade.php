@@ -19,9 +19,11 @@
                                     <div class="product-info">
                                     
                                     <div class="info-1"><img src="{{asset('/storage/'.$product->image)}}" alt=""></div>
+                                    <div class="info-4"><h5><center>{{ $product->brand }}</center></h5></div>
+                                    <br>
                                     <div class="info-2" style="font: size 15px; text-align: center;"><a href="product/{{ $product->id }}">{{ $product->name }}</a></div>
-                <br>
-                <div class="info-4"><h5><center>{{ $product->brand }}</center></h5></div>
+                <br>    <br>
+                
                                     
                                     <div class="info-3"><h5>{{number_format($product->price, -3,',') }}đ</h5></div>
                                     </div>

@@ -92,7 +92,7 @@
                                 @endif
                               
                                 <div class="detail-2">
-                                    <h6><strong>Ngày trả máy:</strong>&nbsp;&nbsp;  {{ $insurance->dateReturn }}</h6>
+                                    <h6><strong>Ngày trả máy:</strong>&nbsp;&nbsp;  {{ date('d-m-Y', strtotime($insurance->dateReturn)) }}</h6>
                                 </div>
                                 <div class="detail-2">
                                     <h6><strong>Trạng thái:</strong>&nbsp;&nbsp; {{$insurance->status}}</h6>

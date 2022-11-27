@@ -124,7 +124,7 @@
           <input type=hidden name=product_id value="{{ $product->id }}" />
       </div>
       <div class="form-group">
-          <input type=submit class="btn btn-success" value="Add Comment" />
+          <input type=submit class="btn btn-success" value="Thêm bình luận" />
       </div>
   </form>
      

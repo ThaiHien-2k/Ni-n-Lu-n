@@ -70,10 +70,11 @@ class ProductController extends Controller
                                     <div class="product-info">
                                     
                                     <div class="info-1"><img src="'.asset('/storage/'.$product->image).'" alt=""></div>
-                                    <div class="info-2" style="font: size 15px; text-align: center;">'.$product->name.'</div>
-                                    <br>
-                                    <br>
                                     <div class="info-4"><h5><center>'.$product->brand.'</center></h5></div>
+                                    <br>
+                                    <div class="info-2" style="font: size 15px; text-align: center;">'.$product->name.'</div>
+                                    <br> <br>  <br>
+                                   
                                     
                                     <div class="info-3"><h5>'.number_format($product->price, -3,',').' vnđ</h5></div>
                                     </div>
@@ -139,9 +140,10 @@ class ProductController extends Controller
                                     <div class="product-info">
                                     
                                     <div class="info-1"><img src="'.asset('/storage/'.$product->image).'" alt=""></div>
-                                    <div class="info-2" style="font: size 15px; text-align: center;">'.$product->name.'</div>
-                                    <br>
                                     <div class="info-4"><h5>'.$product->brand.'</h5></div>
+                                    <br>
+                                    <div class="info-2" style="font: size 15px; text-align: center;">'.$product->name.'</div>
+                                    
                                     
                                     <div class="info-3"><h5>'.number_format($product->price, -3,',').' vnđ</h5></div>
                                     </div>
@@ -246,16 +248,7 @@ class ProductController extends Controller
 
     public function edit(Request $request,$id)
     {
-        // $this->validate(request(),[
-        //     'image'=>'',
-        //     'name'=>'required|string',
-        //     'brand'=>'required|in:ASUS,DELL,MSI,HP,APPLE,ACER',
-        //     'price'=>'required|integer',
-        //     'insurance'=>'required',
-            
-            
-        //     'config'=>'required',
-        // ]);
+        
         if(request('image'))
         {
             $imagepath = $request->image->store('products','public');

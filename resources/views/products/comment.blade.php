@@ -13,7 +13,7 @@
                 <input type=hidden name=parent_id value="{{ $comment->id }}" />
             </div>
             <div class="form-group">
-                <input type=submit class="btn btn-warning" value="Reply" />
+                <input type=submit class="btn btn-warning" value="Trả lời" />
             </div>
         </form>
         @include('products.comment', ['comments' => $comment->replies])

@@ -77,7 +77,7 @@
     
     <h2 class="pt-4">Sản phẩm mới nhất</h2>
     <div class="row d-flex justify-content-center">
-      @foreach ($products as $product)    
+      @foreach ($products->take(8) as $product)    
       <div class="col-lg-3 col-md-6 col-sm-6 col-6 pt-3">
         <div class="card">
           <a href="{{ route('product.show',['product'=>$product->id]) }}">
@@ -85,7 +85,8 @@
               <div class="product-info">
                 <div class="info-1"><img src="{{ asset('/storage/'.$product->image) }}" alt=""></div>
                 <div class="info-4"><h5>{{ $product->brand }}</h5></div>
-                <div class="" style="font: size 15px; text-align: center;"><a href="product/{{ $product->id }}">{{ $product->name }}</a></div>
+                <div class="info-2" style="font: size 15px; text-align: center;"><a href="product/{{ $product->id }}"><h4>{{ $product->name }}</h4></a></div>
+                <br>
                 <br>
                 <div class="info-3"><h5>{{ number_format($product->price, -3,',') }} đ</h5></div>
               </div>
@@ -98,17 +99,21 @@
 <!--  -->
     <h2 class="pt-4">BÁN CHẠY NHẤT</h2>
     <div class="row d-flex justify-content-center">
-      
-      @foreach ($products as $product)   
+     
+      @foreach ($products->take(8) as $product) 
+     
       @if ($loop->even)
-      <div class="col-lg-3 col-md-6 col-sm-6 col-6 pt-3">
+      
+      <div class="col-lg-3 col-md-6 col-sm-6 col-6 pt-4">
         <div class="card">
           <a href="{{ route('product.show',['product'=>$product->id]) }}">
             <div class="card-body ">
               <div class="product-info">
                 <div class="info-1"><img src="{{ asset('/storage/'.$product->image) }}" alt=""></div>
                 <div class="info-4"><h5>{{ $product->brand }}</h5></div>
-                <div class="info-2"><a href="product/{{ $product->id }}"><h4>{{ $product->name }}</h4></a></div>
+                <div class="info-2" style="font: size 15px; text-align: center;"><a href="product/{{ $product->id }}"><h4>{{ $product->name }}</h4></a></div>
+                <br>
+                <br>
                 <div class="info-3"><h5>{{ number_format($product->price, -3,',') }}đ</h5></div>
               </div>
             </div>

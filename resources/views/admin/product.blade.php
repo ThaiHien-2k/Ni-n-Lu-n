@@ -17,8 +17,8 @@
             <h5>QUẢN LÝ SẢN PHẨM</h5>
         </div>
         <div class="card-body">
-            <a href="{{ route('admin.addform') }}" class="btn btn-success mb-4" style="color:white; width:150px;">Thêm sản phẩm</a>
-            <table class="table table-striped">
+            <a href="{{ route('admin.addform') }}" class="btn btn-success mb-4 " style="color:white; width:150px;">Thêm sản phẩm</a>
+            <table class="table table-striped ">
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
@@ -34,8 +34,8 @@
                   <tr>
                     <th scope="row">{{ $product->id }}</th>
                     <td><img style="height:100px;" src="{{ asset('/storage/'.$product->image) }}" alt=""></td>
-                    <td>{{ $product->name }}</td>
-                    <td>{{ $product->brand }}</td>
+                    <td class="d-inline-block text-truncate" style="max-width: 150px;">{{ $product->name }}</td>
+                    <td >{{ $product->brand }}</td>
                     <td>{{ number_format($product->price, -3,',')}}đ</td>
         
                     <td>

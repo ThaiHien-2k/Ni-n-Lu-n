@@ -16,16 +16,23 @@
                     <th scope="col">Email</th>
                     <th scope="col">SĐT</th>
                     <th scope="col">Địa chỉ</th>
+                    <th scope="col">Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
                 @foreach ($users as $user)
-                  <tr>
+                @if($user->role == 'Admin')
+             
+                    
+                    @else
+                    <tr>
                     <th scope="row">{{ $user->user_id }}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->phonenumber }}</td>
                     <td>{{ $user->address }}</td>
+                   <td><a href="{{ route('user.remove',['id'=>$user->id]) }}" class="btn btn-danger w-100 m-1" style="color:white;">Xóa</a></td> 
+                   @endif
                   </tr>
                 @endforeach
                 </tbody>

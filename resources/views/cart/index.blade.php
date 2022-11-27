@@ -19,7 +19,7 @@
                                     <img src="{{ asset('/storage/'.$product['item']['image']) }}" alt="">
                                 </div>
                                 <div class="item-detail mr-auto d-flex flex-column justify-content-center">
-                                    <div class="info-2"><h5>{{ $product['item']['name'] }}</h5> </div> 
+                                    <div class="info-2"><a href="product/{{$product['item']['id'] }}"><h5>{{ $product['item']['name'] }}</h5></a> </div> 
                                     <div class="info-3"><h6>Mẫu: {{ $product['model'] }}</h6></div>
                                     <div class="info-3">Giá: {{ number_format($product['price'], -3,',') }}đ</div>
                                     <div class="info-5">

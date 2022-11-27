@@ -19,7 +19,7 @@ class InsuranceDetail extends Migration
             $table->unsignedBigInteger('insurance_id');
            $table->text('fix');
             $table->string('image');
-            $table->text('status')->nullable();
+          
             $table->timestamps();
         });
     }

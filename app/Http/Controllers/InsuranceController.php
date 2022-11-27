@@ -325,7 +325,7 @@ class InsuranceController extends Controller
     public function viewInsuranceDetail($id,$time)
     {
         $insurances = Insurance::where('id',$id)->get();
-        $insuranceDetails = InsuranceDetail::where('insurance_id',$id)->get();
+        $insuranceDetails = InsuranceDetail::where('insurance_id',$id)->orderBy('date', 'asc')->get();
         return view('admin.viewInsuranceDetail',compact('insurances','insuranceDetails','time'));
         
     }
@@ -343,7 +343,7 @@ class InsuranceController extends Controller
 
     public function create(Request $request)
     {
-               
+        
         $imagepath = $request->image->store('insurances','public');
         
         $insuranceDetail = new InsuranceDetail();
@@ -369,5 +369,117 @@ class InsuranceController extends Controller
        
         return back()->with('success','Xóa chi tiết thành công!');
     }
+
+    public function delivery($id)
+    {
+        Insurance::where('id','=',$id)->update(['status'=>'Đã giao','dateReturn'=> now()]);
+      
+        return back()->with('success','Xác nhận giao máy thành công!');
+    }
     
+    public function editDetailForm($id,$time)
+    {
+        $insuranceDetails = InsuranceDetail::where('id',$id)->get()->first();
+       
+        return view('admin.editInsuranceDetail',compact('insuranceDetails','id','time'));
+        
+    } 
+
+
+    public function editDetail(Request $request, $id)
+    {
+       
+        $insuranceDetails=InsuranceDetail::findOrFail($id);
+        $imagepath = $request->image->store('insurances','public');
+        $insuranceDetails->date=request('date');
+        $insuranceDetails->fix=request('fix');
+        $insuranceDetails->insurance_id=request('id');
+        $insuranceDetails->image=$imagepath;
+        $insuranceDetails->save();
+        
+        $time=request('time');
+    // dd($insuranceDetail->insurance_id);
+        return redirect()->route('insurance.viewDetail', ['id' => $insuranceDetails->insurance_id,'time'=>$time])->with('success','Chỉnh sửa chi tiết thành công!');
+        
+    }
+    
+
+    public function ViewSearchInsuranceDetail()
+    {
+       
+        return view('insurance.searchInsurance');
+        
+    } 
+
+    function searchInsuranceDetail(Request $request)
+    {
+        $this->validate(request(),[
+            'phone'=>'required|numeric|digits:10',
+           
+        ]);
+        
+        $search = $request->input('phone');
+
+        
+        $insurances =Insurance::query()->where('phone', 'LIKE', "%{$search}%") ->get();
+        if($insurances->isEmpty()){
+            return back()->with('error','Sđt này chưa bảo hành lần nào!');
+        }
+        else{
+        $orders = Order::get();
+        $orders->transform(function($order,$key){
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
+
+        return view('insurance.chooseInsuranceTime',compact('insurances','orders'));
+    }
+  
+    }
+
+    // viewDetail
+    public function viewDetail($id)
+    {
+
+        // dd($request);
+        $totalCost  = Insurance::where('serial','=',$id)->sum('cost');
+        $serial = $id;
+        $insurances = Insurance::where('serial','=',$id)->get();
+        $orders = Order::get();
+        $orders->transform(function($order,$key){
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
+       
+
+
+        $name = Laptop::where('serial','=',$id)->get('productName')->first()->productName;
+        $monthAdd = Product::where('name',$name)->get('insurance')->first()->insurance;
+
+        $dateInsurance=Laptop::where('serial','=',$id)->get('dateInsurance')->first()->dateInsurance;
+        $status= strtotime(now())-strtotime('+'.$monthAdd.' month',strtotime($dateInsurance));
+        // $status=$monthAdd;
+        $dateEnd=date( "d-m-Y",strtotime('+'.$monthAdd.' month',strtotime($dateInsurance)));
+        if($status <0){
+            $status='Còn bảo hành đến ngày '.$dateEnd;
+        }
+        else{
+
+            $status='Hết hạn bảo hành ngày '.$dateEnd;
+        }
+
+       
+        $count = Insurance::where('serial','=',$id)->count();
+        // $insuranceDetails = InsuranceDetail::where('insurance_id','=',$insurances->id)->get()->all();
+        return view('insurance.viewDetailInsurance',compact('insurances','orders','serial','count','totalCost','status'));
+        
+    }
+    public function detail($id,$time)
+    {
+        $insurances = Insurance::where('id',$id)->get();
+        $insuranceDetails = InsuranceDetail::where('insurance_id',$id)->orderBy('date', 'asc')->get();
+        return view('insurance.detail',compact('insurances','insuranceDetails','time'));
+        
+    }
+
 }
