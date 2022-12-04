@@ -58,7 +58,7 @@ Route::get('/product/filter','ProductController@filter')->name('product.filter')
 
 Route::get('/product/brand','ProductController@brand')->name('product.brand');
 
-Route::get('/admin-comment','CommentController@store')->name('comments.store');
+Route::get('/admin-comment','CommentController@store')->name('comments.store')->middleware('auth');;
 Route::get('/admin-comment/remove/{id}', 'CommentController@remove')->name('comment.remove')->middleware(['auth','admin']);
 Route::get('/admin-comment/reply/{id}', 'CommentController@reply')->name('comment.reply')->middleware(['auth','admin']);
 Route::get('/admin-comment/replied/{id}', 'CommentController@replied')->name('comment.replied')->middleware(['auth','admin']);

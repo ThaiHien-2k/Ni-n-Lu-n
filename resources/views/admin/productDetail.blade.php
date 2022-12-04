@@ -20,7 +20,7 @@
                    
                     <strong>Tên máy:&nbsp; &nbsp; <a href="" style=" color:blue;"></strong>{{ $product->name }}</a><br>
                     <strong>Thương hiệu: &nbsp; &nbsp;</strong>{{ $product->brand }}<br>
-                    <strong>Giá: &nbsp; &nbsp;</strong>{{ $product->price }}đ<br>
+                    <strong>Giá: &nbsp; &nbsp;</strong>{{ number_format($product->price, -3,',') }}đ<br>
                    
                   
                     

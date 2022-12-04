@@ -22,9 +22,9 @@ class CommentController extends Controller
    
         $input = $request->all();
         $input['user_id'] = auth()->user()->id;
-        $input['status'] = '2';
+        $input['status'] = '1';
         if(auth()->user()->id==1){
-            $input['status'] = '1';
+            $input['status'] = '2';
         }
         Comment::create($input);
    
